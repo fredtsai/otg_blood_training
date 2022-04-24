@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+/**
+ * 本APP所有容之智慧財權，均為蝸牛手建館所有，包括文字、照片、圖片、軟體程式碼，皆受中華民國著作權法、商標法、
+ * 公平交易法與其他相關法令之保障，請尊重智慧財權並遵守法令規範，請勿自行使用、轉載、修改、重製、發行、公開發表、教學、散佈，
+ * 若需此方面的使用或服務，請務必事先與蝸牛手建館人員接洽，並且取得授權。
+ */
+ -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/login_back"
+    >
+
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingTop="16.0dip"
+        tools:context="com.example.user.mysql_test.MainActivity">
+
+
+        <LinearLayout
+            android:id="@+id/top_layout"
+            android:layout_width="369dp"
+            android:layout_height="190dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="113dp"
+                android:layout_height="104dp"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:src="@drawable/login" />
+
+            <TextView
+                android:id="@+id/app_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="登入"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/midlayout"
+            android:layout_below="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/prompt_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="帳號"
+                android:textSize="18dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/login_name"
+                android:layout_below="@+id/prompt_user"
+                />
+
+            <TextView
+                android:id="@+id/prompt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_name"
+                android:text="密碼"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/login_password"
+                android:layout_below="@+id/prompt_password"
+                android:inputType="textPassword"
+                />
+
+            <Button
+                android:id="@+id/bn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_password"
+                android:layout_margin="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="0.61"
+                android:background="?android:attr/listChoiceIndicatorMultiple"
+                android:text="登入" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/checkbox"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/reg_txt"
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="90dp"
+                android:layout_marginRight="90dp"
+                android:layout_weight="0.43"
+                android:background="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:text="Sign Up"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/midlayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/accountmem"
+                android:layout_width="98dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.07"
+                android:text="記住帳號"/>
+            //android:textAppearance="@style/TitleTextStyle.Example" />
+
+            <CheckBox
+                android:id="@+id/passwordmem"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:checked="false"
+                android:text="記住密碼" />
+            //android:textAppearance="@style/TitleTextStyle.Example" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

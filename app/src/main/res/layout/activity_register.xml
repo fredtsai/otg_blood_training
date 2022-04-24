@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+/**
+ * 本APP所有容之智慧財權，均為蝸牛手建館所有，包括文字、照片、圖片、軟體程式碼，皆受中華民國著作權法、商標法、
+ * 公平交易法與其他相關法令之保障，請尊重智慧財權並遵守法令規範，請勿自行使用、轉載、修改、重製、發行、公開發表、教學、散佈，
+ * 若需此方面的使用或服務，請務必事先與蝸牛手建館人員接洽，並且取得授權。
+ */
+ -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    >
+    <RelativeLayout
+        android:id="@+id/activity_register"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingTop="16.0dip"
+        tools:context="com.example.user.mysql_test.Register">
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="使用者註冊"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/app_title"
+            android:padding="10dp"
+            >
+
+            <TextView
+                android:id="@+id/prompt_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textSize="18dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:id="@+id/reg_name"
+                android:layout_below="@+id/prompt_user"
+                />
+
+            <TextView
+                android:id="@+id/prompt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_name"
+                android:layout_marginTop="7dp"
+                android:text="電子郵件"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:id="@+id/reg_phone"
+                android:layout_below="@+id/prompt_email"
+                />
+
+            <TextView
+                android:id="@+id/prompt_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_phone"
+                android:layout_marginTop="7dp"
+                android:text="性別"
+                android:textSize="18dp" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_below="@+id/prompt_sex">
+
+                <RadioButton
+                    android:id="@+id/radioButtonM"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="男生" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonF"
+                    android:layout_width="213dp"
+                    android:layout_height="wrap_content"
+                    android:text="女生" />
+            </RadioGroup>
+
+
+
+            <TextView
+                android:id="@+id/prompt_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioButton"
+                android:layout_marginTop="7dp"
+                android:text="年齡"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:id="@+id/reg_age"
+                android:layout_below="@+id/prompt_age"
+                />
+
+
+            <TextView
+                android:id="@+id/prompt_reg_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_age"
+                android:layout_marginTop="7dp"
+                android:text="帳號"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:id="@+id/reg_user_name"
+                android:layout_below="@+id/prompt_reg_user_name"
+                />
+
+            <TextView
+                android:id="@+id/prompt_reg_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reg_user_name"
+                android:layout_marginTop="7dp"
+                android:text="密碼"
+                android:textSize="18dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/reg_password"
+                android:layout_below="@+id/prompt_reg_password"
+                android:inputType="textPassword"
+                />
+
+            <TextView
+                android:id="@+id/prompt_reg_con_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/reg_password"
+                android:layout_marginTop="11dp"
+                android:text="確認密碼"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reg_con_password"
+                android:inputType="textPassword"
+                android:layout_below="@+id/prompt_reg_con_password"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="送出"
+                android:id="@+id/btn_reg"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/reg_con_password"
+                android:layout_alignParentStart="true"
+                android:background="?android:attr/listChoiceIndicatorSingle" />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
+
