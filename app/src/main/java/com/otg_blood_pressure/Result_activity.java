@@ -129,5 +129,45 @@ public class Result_activity extends Activity {
         });
     }
     void spin_init() {
-        
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, get_data_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //Log.d("FREDTEST: ", response);
+                            JSONArray jsonArray = new JSONArray(response);
+                            //Log.d("FREDTEST lengthhh: ", String.valueOf(jsonArray.length())); //總共n-1筆
+                            for(int i=0; i<jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String date = jsonObject.getString("date");
+                                Log.d("FREDTEST: ", date);
+
+                                spin_list.add(date);
+                                Collections.reverse(spin_list);
+                                ArrayAdapter<String> lunchList = new ArrayAdapter<>(Result_activity.this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        spin_list);
+                                spinner.setAdapter(lunchList);
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Result_activity.this, "Error", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("pid",user_pid);
+                return params;
+            }
+        };
+        MySingleton.getmInstance(Result_activity.this).addToRequestque(stringRequest);
+    }
 }

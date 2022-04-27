@@ -61,8 +61,8 @@ public class MainActivity extends Activity {
     private Handler handler;
     private MainActivity activity;
 
-    private Button clearButton, openButton, updateButton, result_button;
-
+    private Button clearButton, openButton, updateButton, result_button, start_button;
+    private Spinner spinner;
 
     public byte[] writeBuffer;
     public byte[] readBuffer;
@@ -122,7 +122,22 @@ public class MainActivity extends Activity {
         clearButton.setEnabled(false);
         activity = this;
 
+        usbDeviceStateFilter = new IntentFilter();
+        usbDeviceStateFilter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        usbDeviceStateFilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
 
+        BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
+                    openButton.setText("連線");
+                } else if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
+                    UsbDevice device = (UsbDevice) intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                }
+            }
+        };
+
+        registerReceiver(mUsbReceiver, usbDeviceStateFilter);
 
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +193,21 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        start_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sel_pressure.trim().equals("140 mmHg")){
+                    byte[] to_send = toByteArray("61");
+                    MyApp.driver.WriteData(to_send, to_send.length);
+                } else if(sel_pressure.trim().equals("160 mmHg")){
+                    byte[] to_send = toByteArray("62");
+                    MyApp.driver.WriteData(to_send, to_send.length);
+                } else if(sel_pressure.trim().equals("180 mmHg")){
+                    byte[] to_send = toByteArray("63");
+                    MyApp.driver.WriteData(to_send, to_send.length);
+                }
+            }
+        });
 
         handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -224,7 +253,18 @@ public class MainActivity extends Activity {
                     }
                 }
 
-
+                if(type_data.trim().equals("aa 77")) {
+                    String stop_data = get_data.substring(13,17);
+                    if(stop_data.trim().equals("2 03")) {
+                        String blood_data_0 = get_data.substring(6, 8);
+                        String blood_data_1 = get_data.substring(9, 11);
+                        int value1 = Integer.decode("0x" + blood_data_0);
+                        int value0 = Integer.decode("0x" + blood_data_1);
+                        int sum = (value1 * 256) + value0;
+                        Current_global_data = String.valueOf(sum);
+                        CurrentText.setText(Current_global_data);
+                    }
+                }
 
                 Log.d("FREDTEST", "111:"+ SystolicText.getText());
                 Log.d("FREDTEST", "222:"+ DiastolicText.getText());
@@ -273,10 +313,28 @@ public class MainActivity extends Activity {
         updateButton = (Button) findViewById(R.id.UpdateButton);
         openButton = (Button) findViewById(R.id.open_device);
         result_button = (Button) findViewById(R.id.result);
+        start_button = (Button) findViewById(R.id.StartBtn);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
+        final ArrayList<String> spin_list = new ArrayList<>();
+        spin_list.add("140 mmHg");
+        spin_list.add("160 mmHg");
+        spin_list.add("180 mmHg");
+        ArrayAdapter<String> lunchList = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                spin_list);
+        spinner.setAdapter(lunchList);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                sel_pressure = adapterView.getItemAtPosition(position).toString();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-
+            }
+        });
 
 
         DiastolicText.setText("");

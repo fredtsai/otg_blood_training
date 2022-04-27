@@ -18,15 +18,40 @@ import com.otg_blood_pressure.login.login_activity;
 
 public class WelcomeActivity extends Activity {
 
-
+    private Button button;
+    private static final int GOTO_SELECT_ACTIVITY = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_layout);
+        button = findViewById(R.id.button);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mHandler.sendEmptyMessageDelayed(GOTO_SELECT_ACTIVITY, 200);
+            }
+        });
     }
 
+    private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            Intent intent = new Intent();
+            switch (msg.what) {
+                case GOTO_SELECT_ACTIVITY:
+                    intent = new Intent();
+                    //將原本Activity的換成MainActivity
+                    intent.setClass(WelcomeActivity.this, login_activity.class);
 
+                    startActivity(intent);
+                    WelcomeActivity.this.finish();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    };
 }

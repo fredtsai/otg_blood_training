@@ -208,7 +208,13 @@
             android:background="#202020"
             android:tag="configure block" >
 
-
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_pattern"
+                android:text="123" />
 
         </LinearLayout>
     </LinearLayout>
@@ -233,7 +239,15 @@
             android:background="#202020"
             android:tag="configure block" >
 
-
+            <Button
+                android:id="@+id/StartBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_pattern"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:text="開始"
+                android:textSize="30dp" />
 
         </LinearLayout>
     </LinearLayout>
